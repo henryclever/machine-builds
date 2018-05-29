@@ -97,9 +97,57 @@ make install
 #optional:  run test program ./bin/Protonect
 
 
-##################################################installing ROS#################################################
+
+
+######################################################installing ROS######################################################
 #installing ROS
+sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
+sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key 421C365BD9FF1F717815A3895523BAEEB01FA116
+sudo apt-get update
+sudo apt-get install ros-indigo-desktop-full
+sudo rosdep init
+rosdep update
+echo "source /opt/ros/indigo/setup.bash" >> ~/.bashrc
+source ~/.bashrc
+sudo apt-get install python-rosinstall
+
 cd
 mkdir catkin_ws
+cd catkin_ws
+mkdir src
+
+#########################################installing pleora for thermal camera#############################################
+#Download latest version from https://supportcenter.pleora.com/s/article/eBUS-SDK-Software-and-Release-Notes-Dwnload
+cd Downloads
+sudo ./eBUS_SDK_4.1.7.3988_Ubuntu-14.04-x86_64.run
+cd /opt/pleora/ebus_sdk/Ubuntu-14.04-x86_64/bin
+sudo ./install_daemon.sh
+#Select 1 - Install the daemon and automatically load at boot time.
+source /opt/pleora/ebus_sdk/Ubuntu-14.04-x86_64/bin/set_puregev_env
+sudo apt-get install libudev-dev
+cd /usr/lib/x86_64-linux-gnu
+sudo ln -s libudev.so libudev.so.1
+echo 'source /opt/pleora/ebus_sdk/Ubuntu-14.04-x86_64/bin/set_puregev_env' >> ~/.bashrc
+source ~/.bashrc
+#to test the pleora software: optional
+#sudo ./opt/pleora/ebus_sdk/Ubuntu-14.04-x86_64/share/samples/build.sh
+#sudo ./opt/pleora/ebus_sdk/Ubuntu-14.04-x86_64/share/samples/DeviceFinder/DeviceFinder
+sudo apt-get upgrade
+sudo apt-get update
+
+
+######################################building hrl_thermal_camera for catkin_ws###########################################
+cd
+sudo apt-get install ros-indigo-stereo-image-proc
+cd catkin_ws/src
+git clone https://github.com/gt-ros-pkg/hrl.git
+git clone https://github.com/ros-drivers/usb_cam.git
+cd hrl/hrl_thermal_camera
+git checkout origin/hydro-devel
+cd ~/catkin_ws
+catkin_make --only_packages_with_deps usb_cam
+catkin_make --only_packages_with_deps hrl_thermal_camera
+echo 'source /home/henry/catkin_ws/devel/setup.bash' >> ~/.bashrc
+
 
 
