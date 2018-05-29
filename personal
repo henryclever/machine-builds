@@ -93,6 +93,7 @@ mkdir build && cd build
 cmake .. -DCMAKE_INSTALL_PREFIX=$HOME/freenect2
 make
 make install
+sudo cp ../platform/linux/udev/90-kinect2.rules /etc/udev/rules.d/
 
 #optional:  run test program ./bin/Protonect
 
@@ -139,7 +140,7 @@ sudo apt-get update
 ######################################building hrl_thermal_camera for catkin_ws###########################################
 cd
 sudo apt-get install ros-indigo-stereo-image-proc
-cd catkin_ws/src
+cd ~/catkin_ws/src
 git clone https://github.com/gt-ros-pkg/hrl.git
 git clone https://github.com/ros-drivers/usb_cam.git
 cd hrl/hrl_thermal_camera
@@ -148,6 +149,21 @@ cd ~/catkin_ws
 catkin_make --only_packages_with_deps usb_cam
 catkin_make --only_packages_with_deps hrl_thermal_camera
 echo 'source /home/henry/catkin_ws/devel/setup.bash' >> ~/.bashrc
+
+#######################################building deepgrasp_utils for catkin_ws############################################
+#don't forget to add ${OpenCV_LIBRARIES} to CMakeLists.txt in deepgrasp_utils
+#you need to manually copy this library into the catkin_ws currently as it is not in our labs space - it was Samarth's code
+#
+
+#######################################building kinect2 bridge for catkin_ws############################################
+cd ~/catkin_ws/src
+git clone https://github.com/code-iai/iai_kinect2.git
+cd ~/catkin_ws
+catkin_make --only-pkg-with-deps kinect2_bridge
+
+
+
+
 
 
 
