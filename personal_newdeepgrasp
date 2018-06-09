@@ -1,0 +1,8 @@
+
+
+sudo apt-get install python-qt4
+sudo apt-get install ros-indigo-ar-track-alvar
+
+#Installing Horus:
+#Remove system opencv: 
+sudo apt-get remove libopencv-dev && sudo apt-get autoremove
