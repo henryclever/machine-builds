@@ -170,6 +170,9 @@ catkin_make --only-pkg-with-deps kinect2_bridge
 #find_package(Qt5Concurrent)
 #find_package(Qt5OpenGL)
 
+#Here is a good link for information about the kinect topics published:
+#https://github.com/code-iai/iai_kinect2/tree/master/kinect2_bridge
+
 
 
 
