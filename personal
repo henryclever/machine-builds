@@ -161,7 +161,14 @@ git clone https://github.com/code-iai/iai_kinect2.git
 cd ~/catkin_ws
 catkin_make --only-pkg-with-deps kinect2_bridge
 
-
+#Note that this package requires kinect2_registration to be build. kinect2_registration may throw an error for lQt5 
+# libraries. If that's the case add the following to CMakelists.txt in kinect2_registration:
+#find_package(Qt5Gui)
+#find_package(Qt5Core)
+#find_package(Qt5Widgets)
+#find_package(Qt5Test)
+#find_package(Qt5Concurrent)
+#find_package(Qt5OpenGL)
 
 
 
