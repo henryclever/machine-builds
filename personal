@@ -161,8 +161,10 @@ git clone https://github.com/code-iai/iai_kinect2.git
 cd ~/catkin_ws
 catkin_make --only-pkg-with-deps kinect2_bridge
 
+#This will build with openCV3 but will not work, it will result in segmentation fault. Need to use openCV2.
 #Note that this package requires kinect2_registration to be build. kinect2_registration may throw an error for lQt5 
-# libraries. If that's the case add the following to CMakelists.txt in kinect2_bridge and kinect2_registration:
+# libraries. If that's the case add the following to CMakelists.txt in kinect2_viewer, kinect2_bridge,
+# kinect2_calibration, and kinect2_registration:
 #find_package(Qt5Gui)
 #find_package(Qt5Core)
 #find_package(Qt5Widgets)
@@ -172,6 +174,9 @@ catkin_make --only-pkg-with-deps kinect2_bridge
 
 #Here is a good link for information about the kinect topics published:
 #https://github.com/code-iai/iai_kinect2/tree/master/kinect2_bridge
+
+#Also edited the following OpenCV files for it to build:
+#https://answers.ros.org/question/234483/how-to-link-opencv-to-ros-indigo-catkin-with-cmake-ubuntu-1404/
 
 
 
