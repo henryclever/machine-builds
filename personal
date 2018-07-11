@@ -179,6 +179,7 @@ catkin_make --only-pkg-with-deps kinect2_bridge
 #https://answers.ros.org/question/234483/how-to-link-opencv-to-ros-indigo-catkin-with-cmake-ubuntu-1404/
 
 
-
+#to let more data into USB ports try this trick: 
+#https://www.ptgrey.com/tan/10685
 
 
